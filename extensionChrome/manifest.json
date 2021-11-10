@@ -1,0 +1,13 @@
+{
+    "name": "Awesome Test Extension",
+
+    "background": {
+      "scripts": [
+        "backgroundContextMenus.js",
+        "backgroundOmniBox.js",
+        "backgroundOauth.js" ,
+        "background.js"
+      ]
+    }
+ 
+  }
