@@ -39,23 +39,26 @@ const { test, expect } = require('@playwright/test');
     await extensionPage.type('#confirm-password', password)
     await extensionPage.click('#app-content > div > div.main-container-wrapper > div > div > form > div.first-time-flow__checkbox-container > div');
     await extensionPage.click('#app-content > div > div.main-container-wrapper > div > div > form > button');
+
     await extensionPage.click('#app-content > div > div.main-container-wrapper > div > div > button');
-    await extensionPage.click('#app-content > div > div.main-container-wrapper > div > div > div > button > span');
-    await extensionPage.click('#app-content > div > div.menu-droppo-container.network-droppo > div > li:nth-child(7) > span');
-    await extensionPage.click('#app-content > div > div.app-header > div > div.app-header__account-menu-container > div > div')
+    const butt = await extensionPage.waitForSelector("section.popover-wrap.whats-new-popup__popover button.fas.fa-times.popover-header__button");
+    await butt.click();
 
+    await extensionPage.click('div[role="button"]:has-text("Ethereum Mainnet")');
+    await extensionPage.click('text=Goerli Test Network');
+    
   }
-
   else {
     await extensionPage.waitForSelector('#password');
-    await extensionPage.waitForSelector('#password');
     await extensionPage.type('#password', password);
-    await extensionPage.click("text=UNLOCK", { delay: 1000 });
-    await extensionPage.waitForSelector('#app-content > div > div.app-header.app-header--back-drop > div > div.app-header__account-menu-container > div.app-header__network-component-wrapper > div > span');
-    await extensionPage.click('#app-content > div > div.app-header.app-header--back-drop > div > div.app-header__account-menu-container > div.app-header__network-component-wrapper > div > span');
-    await extensionPage.click('#app-content > div > div.menu-droppo-container.network-droppo > div > li:nth-child(7) > span', { delay: 1000 });
-
+    await extensionPage.click("text=UNLOCK");
+    const butt = await extensionPage.waitForSelector("section.popover-wrap.whats-new-popup__popover button.fas.fa-times.popover-header__button");
+    await butt.click();
+    //   await extensionPage.waitForSelector('#app-content > div > div.app-header.app-header--back-drop > div > div.app-header__account-menu-container > div.app-header__network-component-wrapper > div > span');
+    //  await extensionPage.click('#app-content > div > div.app-header.app-header--back-drop > div > div.app-header__account-menu-container > div.app-header__network-component-wrapper > div > span');
+    //  await extensionPage.click('#app-content > div > div.menu-droppo-container.network-droppo > div > li:nth-child(7) > span', { delay: 1000 });
   }
+
   const newtab = await browserContext.newPage();
   try {
     await newtab.goto('https://goerli-test.zed.run', { waitUntil: "networkidle" }, { timeout: 30000 });
@@ -77,7 +80,7 @@ const { test, expect } = require('@playwright/test');
     await extensionPage.click('[data-testid="page-container-footer-next"]');
   }
   else {
-  await extensionPage.click('[data-testid="request-signature__sign"]');
+    await extensionPage.click('[data-testid="request-signature__sign"]');
   }
 
   await newtab.click('.header-container > .header > .header-content > .right-part > .balance-part')
@@ -112,8 +115,16 @@ const { test, expect } = require('@playwright/test');
   //  page.click('[data-testid="request-signature__sign"]')
 
 
+
+
+
+
   // await page.goto('chrome-extension://bjcjcofbnaojipghcbpajdjnipiikeej/notification.html#confirm-transaction');
   // page.click('[data-testid="request-signature__sign"]')
+
+
+
+
 
   //const page1 = await context.newPage();
   // await page1.goto('chrome-extension://bjcjcofbnaojipghcbpajdjnipiikeej/notification.html');
@@ -136,12 +147,22 @@ const { test, expect } = require('@playwright/test');
   //await page.goto('https://goerli-test.zed.run/stable/stable-94224685');
 
 
+
+
+
+
+
+
   // // Get page after a specific action (e.g. clicking a link)
 
   // await newPage.waitForLoadState();
   // console.log(await newPage.title());
   // await page.click('button:has-text("Next")');
   // await page.click('button:has-text("Connect")');
+
+
+
+
 
 
   // await extensionPage.click("text=Get Started");
